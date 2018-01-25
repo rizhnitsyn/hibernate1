@@ -13,6 +13,7 @@
     <property name="show_sql">true</property>
     <property name="format_sql">true</property>
 
-    <mapping class="by.academy.Chat"/>
+    <mapping class="by.academy.Painting"/>
+    <mapping class="by.academy.Hero"/>
   </session-factory>
 </hibernate-configuration>
