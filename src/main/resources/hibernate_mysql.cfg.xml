@@ -15,5 +15,7 @@
 
     <mapping class="by.academy.Painting"/>
     <mapping class="by.academy.Hero"/>
+    <mapping class="by.academy.Inventory"/>
+    <mapping class="by.academy.Items"/>
   </session-factory>
 </hibernate-configuration>

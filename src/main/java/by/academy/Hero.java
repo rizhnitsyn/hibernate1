@@ -23,6 +23,19 @@ public class Hero extends BaseEntity {
     @Column(name = "gender", nullable = false)
     private Gender gender;
 
+    public Hero(String name, Gender gender, EquipmentSet firstEquipmentSet, EquipmentSet secondEquipmentSet) {
+        this.name = name;
+        this.gender = gender;
+        this.firstEquipmentSet = firstEquipmentSet;
+        this.secondEquipmentSet = secondEquipmentSet;
+    }
+
+    public Hero(String name, Gender gender) {
+
+        this.name = name;
+        this.gender = gender;
+    }
+
     @Embedded
     @AttributeOverrides(value = {
             @AttributeOverride(name = "meleeWeapon", column = @Column(name = "first_melee_weapon")),
@@ -36,6 +49,10 @@ public class Hero extends BaseEntity {
             @AttributeOverride(name = "rangeWeapon", column = @Column(name = "second_range_weapon"))
     })
     private EquipmentSet secondEquipmentSet;
+
+    @OneToOne
+    @JoinColumn(name = "inventory_id")
+    private Inventory inventory;
 
     @Transient
     public boolean isMan() {

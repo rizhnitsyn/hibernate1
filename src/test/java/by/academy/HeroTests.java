@@ -21,7 +21,9 @@ public class HeroTests {
 
         EquipmentSet firstEquipmentSet = new EquipmentSet("Sword", "Bow");
         EquipmentSet secondEquipmentSet = new EquipmentSet("Axe", "CrossBow");
-        Hero hero = new Hero("Mage", Gender.MALE, firstEquipmentSet, secondEquipmentSet);
+        Inventory inventory = session.get(Inventory.class, 4L);
+        Hero hero = new Hero("Mage2", Gender.MALE, firstEquipmentSet, secondEquipmentSet);
+        hero.setInventory(inventory);
         session.save(hero);
 
         transaction.commit();
@@ -31,20 +33,31 @@ public class HeroTests {
 
     @Test
     public void saveGetHeroTestH2() {
-        Session session = SESSION_FACTORY_H2.openSession();
+        Session session = SESSION_FACTORY.openSession();
         Transaction transaction = session.beginTransaction();
 
-        EquipmentSet firstEquipmentSet = new EquipmentSet("Sword", "Bow");
-        EquipmentSet secondEquipmentSet = new EquipmentSet("Axe", "CrossBow");
-        Hero hero = new Hero("Mage", Gender.MALE, firstEquipmentSet, secondEquipmentSet);
-        session.save(hero);
+//        EquipmentSet firstEquipmentSet = new EquipmentSet("Sword", "Bow");
+//        EquipmentSet secondEquipmentSet = new EquipmentSet("Axe", "CrossBow");
+//        Inventory bag = new Inventory("Bag");
+//        Items knife = new Items("knife");
+//        Items paper = new Items("paper");
+//        knife.setInventory(bag);
+//        knife.setInventory(bag);
+//        session.save(bag);
+//        session.save(knife);
+//        session.save(paper);
+//        Hero hero = new Hero("Archer", Gender.MALE, firstEquipmentSet, secondEquipmentSet);
+//        hero.setInventory(bag);
+//        session.save(hero);
 
-        Hero hero2 = session.get(Hero.class, 1L);
-        Assert.assertEquals(hero.getName(), "Mage");
+        Hero hero1 = session.get(Hero.class, 3L);
+
+//        Hero hero2 = session.get(Hero.class, 1L);
+//        Assert.assertEquals(hero.getName(), "Mage");
 
         transaction.commit();
         session.close();
-        SESSION_FACTORY_H2.close();
+        SESSION_FACTORY.close();
     }
 
     @Test
