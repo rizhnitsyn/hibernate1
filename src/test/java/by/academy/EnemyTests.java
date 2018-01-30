@@ -6,6 +6,8 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
 
+import javax.swing.text.html.parser.Entity;
+
 /**
  * Created by user on 30.01.2018.
  */
@@ -34,6 +36,23 @@ public class EnemyTests {
         invisibleEnemy.setInvisibilityDuration("25");
         session.save(invisibleEnemy);
 
+
+        transaction.commit();
+        session.close();
+        SESSION_FACTORY.close();
+    }
+
+    @Test
+    public void testInheritance() {
+        Session session = SESSION_FACTORY.openSession();
+        Transaction transaction = session.beginTransaction();
+
+//        ArmoredEnemy armoredEnemy = session.get(ArmoredEnemy.class, 1L);
+//        System.out.println(armoredEnemy);
+
+        session.createQuery("select m from Enemy m", Enemy.class)
+                .list()
+                .forEach(System.out::println);
 
         transaction.commit();
         session.close();
